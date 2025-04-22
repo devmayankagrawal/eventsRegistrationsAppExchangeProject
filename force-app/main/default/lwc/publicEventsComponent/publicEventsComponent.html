@@ -1,0 +1,544 @@
+<template>
+
+    <div class=" slds-size_1-of-1 slds-medium-size--2-of-2 slds-large-size--3-of-3  slds-p-around_medium" style="background-color:white;padding: 2px;">        
+        <div class="slds-grid">
+            <div class="slds-media__figure" style="padding-left:10px;padding-top:5px;padding-bottom:10px">
+                <img src={imageUrl} width="120" height="90" alt="Avatar" onclick={handleOkButton}/>
+            </div>
+
+           <!-- <div class="slds-col_bump-left" style="padding-top: 50px; margin-right:2%; --sds-c-button-brand-color-background:#00BFFF; --sds-c-button-brand-text-color: #000000;">
+                <lightning-button class="button" style="font-size: 12px;" variant="brand" label="Dashboard" onclick={handleMyDashBoard}></lightning-button>&nbsp;&nbsp;
+                <lightning-button class="button" style="font-size: 12px;" variant="brand" label="Log Out" onclick={handleLogOut}></lightning-button>
+            </div>-->
+        </div>
+    </div>
+
+   <template if:true={FirstPage}>
+        <label style="color: #0000FF; font-family: Arial; font-size: 30px; font-weight: bold; margin-left: 40px;">Welcome!</label>
+        <div style="background-color:#E0FFFF; height:80%;">
+            <div class="slds-grid slds-gutters slds-wrap ">
+                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-m-bottom_medium  slds-p-around_medium" style="padding-left:50px;padding-top:100px;">
+                    <label class="slds-form-element__label" style="color: #0000FF;font-family: Arial; font-size: 25px;font-weight: bold;">Join our events and become part of a community that fosters meaningful connections for you and those you wish to support.</label>
+                    <p style="padding-left:1px; color:#89868B;font-family: Arial; font-size: 15px;font-weight: normal;"></p>
+                    <div style="padding:0.5rem; --sds-c-button-brand-color-background: #00BFFF; --sds-c-button-brand-text-color: #000000;">
+                        <button class={sldsButtonClass} style="background-color:#00BFFF ;border: none; border-radius:15px; width:140px; height:40px;" label="Register" onclick={handleGetStarted}>Register</button>
+                    </div>
+                </div>
+                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-m-bottom_medium  slds-p-around_medium" style="padding-left:50px;padding-top:60px;">
+                    <img class="slds-float_none" src={ImageFirstPage} style="object-fit: cover; max-width:100%;max-height:100%; border-radius: 15px ;" width="90%" height="90%" alt="Avatar" />
+                </div>
+            </div>
+        </div>        
+   </template>
+
+<tempalte if:true={SecondPage}>
+    
+    <div style="background-color:white; height:60%;">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p>Building Community Through Shared Experiences.</p>
+            </div>
+        </div>
+        <div class="rectangle">
+
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2  slds-p-around_medium ">
+                    <label class="slds-form-element__label slds-p-left_x-large" style="color:#0000FF;font-family: Arial; font-size: 24px;font-weight: bold;">Choose the language you prefer.</label></br></br>
+                    <label class="slds-form-element__label slds-p-left_x-large" style="color:#89868B;font-family: Arial; font-size: 15px;font-weight: normal;">Our events are available in the languages below. Please feel free to choose multiple languages.</label></br>
+
+                    <template if:true={showmsg}><div class="slds-p-left_xx-large"><p style="color:red;margin-top:7px;">Please choose your language.</p></div></template>
+
+                    <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3 slds-p-around_medium">
+                        <div class="slds-p-left_xx-large" style="--sds-c-button-brand-color-background: #FFCD05; --sds-c-button-brand-text-color: #50276B;">
+                            <!-- Dynamically rendering language buttons from custom label -->
+                            <template for:each={languages} for:item="lang">
+                                <button key={lang.value} class={sldsButtonClass}
+                                    style="border: none; border-radius:20px; width:100px; height:40px; margin-bottom: 20px;" 
+                                    label={lang.label} data-name="language"
+                                    onclick={handleButtonClick} data-lang={lang.value}>
+                                    {lang.label}
+                                </button>
+                                &nbsp;&nbsp;
+                            </template>
+                        </div>
+                    </div>
+
+                   <!-- <div class="slds-media__body slds-text-align_right slds-p-around_small" style=" --sds-c-button-brand-color-background: #00BFFF; --sds-c-button-brand-text-color: #000000;">
+                        <lightning-button class="button" style="font-size: 18px; border: none;" variant="brand" label="Back" onclick={handleBack01}></lightning-button>&nbsp;
+
+                        <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue}></lightning-button>&nbsp;&nbsp;
+                    </div>-->
+
+                </div>
+                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2  slds-p-around_medium">                    
+                        <img src={ImageSecondPage} style="border-radius: 15px ;max-width:100%;max-height:100%;" width="100%" height="100%" alt="Avatar" />                    
+                </div>
+            </div>
+        </div></br>
+
+        <div class="slds-media__body slds-align_absolute-center" style="--sds-c-button-brand-color-background: #00BFFF;  --sds-c-button-brand-text-color: #000000;">
+            <lightning-button class="button" style="font-size: 18px;" variant="brand" label="Back" onclick={handleBack01}></lightning-button>&nbsp;
+            <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue}></lightning-button>&nbsp;&nbsp;
+        </div>
+    </div>    
+</tempalte>
+
+
+
+<template if:true={FourthPage}>
+    
+    <div style="background-color:white; height:100%;">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p>Please select the events you would like to attend.</p>
+            </div>
+        </div>
+        
+        <div style="background-color:white;">
+            <div style="width:100%;height:100%;">
+                <lightning-accordion allow-multiple-sections-open active-section-name={activeSections}>
+                    <template for:each={groupData} for:item="main" for:index="index">
+                        <span key={main.groupName} class="slds-text-align_center" style="display: block; width: 100% !important; text-align: center;font-weight:bold;margin-top:20px;margin-bottom:20px;font-size:20px;"> {main.groupName}</span>
+                        <template for:each={main.list} for:item="eventparent" for:index="index">
+                            <div style="width:100%;height:100%; border: 2px solid #00BFFF;border-radius: 4px; margin-top:5px;" key={eventparent.Id}> 
+                                <lightning-accordion-section name={eventparent.Id} label={eventparent.Name}>
+                                    <div style="display: flex;flex-direction: column;">
+                                        <template if:false={eventparent.hideCheckboxsession}>
+                                            <lightning-input class="slds-p-left_xx-large slds-m-top_small slds-p-top_largeslds-grid_align-end slds-text-heading_large " style="font-size: 27px;font-weight: 600;" type="checkbox" name={eventparent.Id} data-event-id={eventparent.Id} key={eventparent.Id} label={eventparent.Name} onchange={handleEventSelection}><strong>{eventparent.Name}</strong></lightning-input> <br/>
+                                        </template>
+                                        <template if:true={eventparent.registrationClosed}>
+                                            <div class="slds-align_absolute-center danger" style="padding-left: 1%; width:50%; border-radius:5px;">
+                                                <p class="registration-message" style="font-size:16px;">{eventparent.registrationMessage}</p>	
+                                            </div>
+                                        </template> <br/>
+                                        <template if:true={eventparent.registrationClosed}>
+                                            <div class="slds-align_absolute-center danger" style="padding-left: 1%; width:50%; border-radius:5px;">					
+                                                <p class="registration-message" style="font-size:16px;">{eventparent.capacityMessage}</p>
+                                            </div>
+                                        </template>
+                                        
+                                    </div>
+                                    <div class="slds-p-around_medium shappesreactangle ">
+                                        <template for:each={eventparent.OrgEventManager__Sessions__r} for:item="session">
+                                            <div key={session.Id}>
+                                                <div class="slds-m-top_smal" style="width:100%;height:100%;background-color:#E0FFFF ;border-radius: 10px;padding-top:15px;">
+                                                   <div class="slds-align_absolute-center" style="margin:0;">
+                                                    <p><strong style="margin:0;">Session: {session.Name}</strong></p>
+                                                   </div>
+
+                                                    <div class="slds-grid slds-gutters slds-wrap slds-align_absolute-center slds-p-left_x-small">
+                                                        <div class="slds-size_1-of-1 slds-wrap slds-medium-size--1-of-2 slds-large-size--1-of-2  slds-p-around_medium ">
+                                                            <p>Date: {session.OrgEventManager__Date_of_session__c}</p>
+                                                            <p>Language: {eventparent.OrgEventManager__Event_Language__c}</p>
+                                                            <p>Session Mode: {session.OrgEventManager__Session_Mode__c}</p>
+                                                            <p>Venue/ Session Link: {session.OrgEventManager__Venue__c}</p>                                                            
+                                                        </div>
+                                                        <div class=" slds-size_1-of-1  slds-wrap slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                                            <p>Start Time: {session.OrgEventManager__Start_Time__c}</p>
+                                                            <p>End Time: {session.OrgEventManager__End_Time__c}</p>  
+                                                            <p>Remark: {session.OrgEventManager__Remarks__c}</p>                                                        
+                                                        </div>
+                                                    </div>
+                                                </div></br>
+                                            </div>
+                                        </template>
+                                    </div></br>
+                                </lightning-accordion-section>
+                            </div> 
+                        </template></template>
+                </lightning-accordion>
+            </div></br>
+            <div class="slds-media__body slds-align_absolute-center">
+                <div style=" --sds-c-button-brand-color-background: #00BFFF; --sds-c-button-brand-text-color: #000000;">
+                    <lightning-button class="button" style="font-size: 18px; border: none;" variant="brand" label="Back" onclick={handleBack03}></lightning-button>&nbsp;
+                    <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue03}></lightning-button>&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</template>
+
+<template if:true={FifthPage}>
+    
+    <div style="background-color:white; height:90%;">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p style="margin-bottom:12px;">Registration Overview</p> 
+            </div>
+        </div>
+        <template if:true={showEvents}>
+            <template for:each={showEvents} for:item="eventParent">
+                <div key={eventParent.Id}>
+                    <div class="slds-p-horizontal_large" style="width:100%;height:12%;background-color:#E0FFFF;border-radius: 10px;">
+                        <div class="slds-p-horizontal_x-large slds-p-vertical_small" style="background-color:#E0FFFF;">
+                            <span class="slds-form-element__label slds-align_absolute-center" style="font-size:20px;font-weight:bold;margin-top:12px;">Event: {eventParent.Name}</span>
+                            
+                            <template for:each={eventParent.OrgEventManager__Sessions__r} for:item="session">
+                                <div key={session.Id}>
+                                    <span class="slds-form-element__label slds-align_absolute-center" style="font-size:20px;font-weight:bold;">Session: {session.Name}</span>
+                                    
+                                    <div class="slds-grid slds-gutters slds-wrap slds-align_absolute-center slds-p-left_x-small">                                       
+                                        <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2  slds-p-around_medium " >                                            
+                                            <p class="slds-form-element__label">Date: {session.OrgEventManager__Date_of_session__c}</p> <br />
+                                            <p class="slds-form-element__label">Language: {eventParent.OrgEventManager__Event_Language__c}</p><br />
+                                            <p class="slds-form-element__label">Session Mode: {session.OrgEventManager__Session_Mode__c}</p><br/>
+                                            <p class="slds-form-element__label">Venue/ Session Link: {session.OrgEventManager__Venue__c}</p>                                        
+                                        </div>
+                                        <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2  slds-p-around_medium" >                                           
+                                            <p class="slds-form-element__label">Start Time: {session.OrgEventManager__Start_Time__c}</p><br />
+                                            <p class="slds-form-element__label">End Time: {session.OrgEventManager__End_Time__c}</p><br />
+                                            <p class="slds-form-element__label">Remark: {session.OrgEventManager__Remarks__c}</p>                                            
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </template>
+                            
+                        </div>
+                    </div> </br>
+                </div>
+            </template>
+        </template>
+     <!--   <div class="slds-media__body slds-p-bottom_x-large slds-p-top_medium slds-align_absolute-center" style="--sds-c-button-brand-color-background: #FFCD05; --sds-c-button-brand-text-color: #50276B;">
+            <div style=" --sds-c-button-brand-color-background: #00BFFF; --sds-c-button-brand-text-color: #000000;">
+                <lightning-button class="button" style="font-size: 18px; border: none;" variant="brand" label="Back" onclick={handleBack04}></lightning-button>&nbsp;
+
+                <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue04}></lightning-button>&nbsp;&nbsp;
+            </div>
+        </div>-->
+        <div class="slds-media__body slds-align_absolute-center" style="--sds-c-button-brand-color-background: #00BFFF;  --sds-c-button-brand-text-color: #000000;">
+            <lightning-button class="button" style="font-size: 18px;" variant="brand" label="Back" onclick={handleBack04}></lightning-button>&nbsp;
+            <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue04}></lightning-button>&nbsp;&nbsp;
+        </div>
+    </div>
+    
+</template>
+
+<template if:true={SixthPage}>
+   
+    <div style="background-color:white; height:60%;">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p>Consent Form</p>
+            </div>
+        </div>
+        <div class="rectangle">
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-size_1-of-1 slds-medium-size_1-of-1 slds-large-size_1-of-1 slds-p-around_medium" style="padding-left: 30px;">                        
+                    <p style="font-family:Arial;font-size :17px;font-weight:bold;line-height: 1.5em">By completing this registration, you authorize Thutech Infosystem Pvt. Ltd to collect, use, and share your personal information, as well as that of others on your behalf, for the following purposes:</p><br />
+                    <ul class="custom-list">
+                        <li>Sharing data with public entities and other relevant organizations for the purposes of funding and statistical reporting.</li>
+                        <li>Following up via phone and email communication.</li>
+                    </ul><br/>
+                    <p style="font-family:Arial;font-size :17px;line-height: 1.5em;">You are free to decline any recommended services or plans and can opt out of Thutech Infosystem Pvt. Ltd's services or program at any time.</p><br />						
+                    <lightning-input class="CheckfieldClass" type="checkbox"  name="OrgEventManager__Consent_Checkbox__c" value={contactObject.OrgEventManager__Consent_Checkbox__c} onchange={handleCheckChange} label="I acknowledge and confirm that the information I am providing is accurate and truthful to the best of my knowledge." required=true> </lightning-input>
+                    
+                </div>
+            </div>
+        </div></br>
+        
+        <div class="slds-media__body slds-align_absolute-center" style="--sds-c-button-brand-color-background: #00BFFF;  --sds-c-button-brand-text-color: #000000;">
+            <lightning-button class="button" style="font-size: 18px;" variant="brand" label="Back" onclick={handleBack05}></lightning-button>&nbsp;
+            <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue05}></lightning-button>&nbsp;&nbsp;
+        </div>
+
+    </div>
+   <!-- <div class="slds-media__body slds-align_absolute-center slds-p-top_medium slds-p-bottom_medium" style="--sds-c-button-brand-color-background: #FFCD05; --sds-c-button-brand-text-color: #50276B;">
+        <div style=" --sds-c-button-brand-color-background: #00BFFF; --sds-c-button-brand-text-color: #000000;">
+            <lightning-button class="button" style="font-size: 18px; border: none;" variant="brand" label="Back" onclick={handleBack05}></lightning-button>&nbsp;
+
+            <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;margin-bottom:5px;" variant="brand" label="Continue" onclick={handleContinue05}></lightning-button>&nbsp;&nbsp; <br /><br />
+        </div>
+        <br /><br />
+    </div>-->
+    
+</template>
+
+<template if:true={SeventhPage}>
+    
+    <div style="background-color:white; height:100%;">
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p> Registration Form (Participants) </p>
+            </div>
+        </div>
+       
+        <template if:true={caregiverFormFlag}>
+            <div class="slds-grid slds-gutters slds-wrap">
+                <div class="slds-media__body slds-text-align_center slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 17px;font-weight: 600;line-height: 29px;">
+                    <p>Fill in your details here </p>
+                </div>
+            </div>
+            
+            <div class="slds-p-around_xx-large slds-m-bottom_xx-small slds-p-horizontal_medium" style="background-color:White;"> 
+                              
+                <lightning-accordion class="custom-accordion" allow-multiple-sections>
+                    <template for:each={contactForms} for:item="form" for:index="index">
+                        <lightning-accordion-section class="accordionClass"
+                            key={form.id} 
+                            label={form.label} 
+                            name={form.id}>
+                            
+                             <!-- Delete Button -->
+                             <div style="display: flex; justify-content: flex-end;">
+                             <lightning-button-icon icon-name="utility:delete" alternative-text="Delete" 
+                             class="custom-delete-button slds-m-top_small slds-icon-text-error"  onclick={handleDeleteForm} data-index={index}>
+                             </lightning-button-icon>
+                             </div>
+                            <div class="slds-text-align_left " style="padding-left:5px; color: black;font-family: Arial; font-size: 20px;font-weight: bold;">Personal Information</div>
+                            
+                            <!-- Form Fields -->                   
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Full Name <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-input type="text" name="LastName" variant="label-hidden" data-index={index} value={form.LastName} onchange={handleInputChange} placeholder="Enter Your Full Name"></lightning-input>
+                                </div>
+                               
+                                 <!--<div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Age <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-input type="text" name="OrgEventManager__Age__c" variant="label-hidden" data-index={index} value={form.OrgEventManager__Age__c} onchange={handleInputChange} placeholder="Enter age" maxlength="3"></lightning-input>
+                                </div>-->
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Gender <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-combobox name="OrgEventManager__Gender__c" variant="label-hidden" data-index={index} value={form.OrgEventManager__Gender__c} options={optionsGender} onchange={handleInputChange} placeholder="Select Your Gender"></lightning-combobox>
+                                </div>
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Email<abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-input type="email" name="Email" variant="label-hidden" data-index={index} value={form.Email} onchange={handleInputChange} placeholder="Enter Your Email"></lightning-input>
+                                </div>
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Mobile Number <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-input type="tel" name="MobilePhone" variant="label-hidden" data-index={index} value={form.MobilePhone} onchange={handleInputChange} placeholder="Enter mobile number" pattern="[0-9]*" message-when-pattern-mismatch="Mobile Number should include digits." minlength="8" maxlength="10" message-when-too-short="Please enter minimum 8 numbers"></lightning-input>
+                                </div>
+                            </div>
+            
+                            <div class="slds-text-align_left" style="padding-left:5px; color: black;font-family: Arial; font-size: 20px;font-weight: bold;">Address</div>
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Country <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-combobox name="OrgEventManager__Country__c" variant="label-hidden" data-index={index} value={form.OrgEventManager__Country__c} options={optionsCountry} onchange={handleInputChange} placeholder="Select Country"></lightning-combobox>
+                                </div>
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-around_medium">
+                                    <label class="slds-form-element__label" style="color: #3f3f3f;font-family:Arial;font-size: 1.1em; ">Postal Code <abbr class="slds-required" style="font-size: 1em;" title="required">*</abbr></label>
+                                    <lightning-input type="text" name="OrgEventManager__Postal_Code1__c" variant="label-hidden" data-index={index} value={form.OrgEventManager__Postal_Code1__c} onchange={handleInputChange} placeholder="Enter Postal Code" maxlength="6"></lightning-input>
+                                </div>
+                            </div>
+                          
+                        </lightning-accordion-section>
+                    </template>
+                </lightning-accordion>
+                
+                <!-- Add New Button -->
+                <div style="display: flex; justify-content: flex-end; padding-right: 18px;">
+                <lightning-button variant="neutral" class="custom-add-new-button"  label="Add New" onclick={handleAddForm} disabled={isAddDisabled} icon-name="utility:add"></lightning-button>
+                </div>
+                
+            </div>
+            
+        </template>
+        
+
+
+        <div class="slds-media__body slds-align_absolute-center" style="--sds-c-button-brand-color-background: #00BFFF;  --sds-c-button-brand-text-color: #000000;">
+            <lightning-button class="button" style="font-size: 18px;" variant="brand" label="Back" onclick={handleBack06}></lightning-button>&nbsp;
+            <!-- Submit Button -->
+            <lightning-button class="button" style="font-size: 18px;" variant="brand" label="Submit" onclick={handleSubmit}></lightning-button>            
+             <!--<lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;" variant="brand" label="Continue" onclick={handleContinue06}></lightning-button>&nbsp;&nbsp;
+            -->
+        </div>
+    </div>
+    
+</template>
+
+
+
+
+<template if:true={NinthPage}>
+   <!-- <div class="slds-size_1-of-1 slds-medium-size--2-of-2 slds-large-size--3-of-3  slds-p-around_medium slds-m-top_medium" style="background-color:white;padding: 1px;">
+        <div class="slds-grid slds-grid_align-spread slds-wrap">            
+            <div class="slds-grid slds-grid_align-end">
+                <div class="slds-col slds-m-right_small">
+                <button class="slds-text-align_center slds-float_right hover-effect-button" style="border: 2px solid rgb(219, 187, 214);font-size:small; border-radius:20px; width:100px; height:35px;" onclick={handleLogOut}>Log Out</button>&nbsp;&nbsp;
+                <button class="slds-text-align_center slds-float_right hover-effect-button" style="border: 2px solid rgb(219, 187, 214);font-size:small; margin-right:10px; border-radius:20px; width:90px; height:35px; padding-right:10px;" onclick={handleOkButton}>Home</button>
+                </div>
+            </div>
+        </div></br>
+    </div>-->
+    <div style="background-color:white; height:100%;">
+        <!--<div class="slds-grid slds-gutters slds-wrap slds-p-top_xx-large slds-p-left_xx-large">
+            <div class="slds-media__body   slds-p-around_small" style="padding-top:10px; color:black;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p> Hi, {currentUserName} </p>
+            </div>
+        </div>-->
+        <div class="slds-grid slds-gutters slds-wrap slds-p-left_xx-large">
+            <div class="slds-media__body   slds-p-around_small" style="padding-top:10px; color:#0000FF;font-family:Arial;font-size: 17px;font-weight: 600;line-height: 29px;">
+                <p>Please view your list of upcoming events here.</p>
+            </div>
+        </div>
+        <template if:true={DashBoardSessions}>
+            <template for:each={DashBoardSessions} for:item="session">
+                <div key={session.Id}>
+                    <div class="slds-p-horizontal_large" style="width:100%;height:12%;background-color:#E0FFFF;border-radius: 10px;">
+                        <div class="slds-p-horizontal_x-large slds-p-vertical_small" style="background-color:#E0FFFF;">
+                            <span class="slds-form-element__label slds-align_absolute-center" style="font-size:20px;font-weight:bold;margin-top:15px; margin-bottom: 5px;">Event: {session.eventName}</span>
+                            <span class="slds-form-element__label slds-align_absolute-center" style="font-size:20px;font-weight:bold;">Session: {session.sessionName}</span>
+                            <div class="slds-grid slds-gutters slds-wrap">
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium">
+                                    <template if:true={session.imglastdashboard}>
+                                        <div>
+                                            <iframe style="border-radius: 25px; width: 80%; height: 200px;pointer-events: none;" src={session.imglastdashboard}  class="slds-m-around_medium"></iframe>
+                                        </div>
+                                    </template>
+                                    <template if:false={session.imglastdashboard}>
+                                        <div>
+                                            <img style="border-radius: 25px; width: 70%; height: 100px;pointer-events: none;" src={imageUrl} class="slds-m-around_medium"></img>
+                                        </div>
+                                    </template>
+                                </div>
+                                <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--2-of-3  slds-p-around_medium">
+                                    <ol class="slds-list_dotted"> </br>
+                                        <li class="slds-form-element__label" >Date: {session.sessionDate}</li> <br />
+                                        <li class="slds-form-element__label">Language: {session.eventLanguage}</li><br>
+                                        <li class="slds-form-element__label">Start Time: {session.sessionStartTime}</li><br>
+                                        <li class="slds-form-element__label">End Time: {session.sessionEndTime}</li><br>
+                                        <li class="slds-form-element__label">Session Mode: {session.sessionMode}</li><br>
+                                        <li class="slds-form-element__label" style=" text-indent: -56px; padding-left: 56px;">Venue/ Session Link: {session.venueName}</li><br>
+                                        <li class="slds-form-element__label" style=" text-indent: -65px; padding-left: 65px;">Remark: {session.remarKs}</li>
+
+                                    </ol>
+                                </div>
+                                
+                            </div>
+                            <div>
+                                <template for:each={session.registeredContacts} for:item="contact">
+                                    <div key={contact.contactId}>
+                                        <div class="slds-grid slds-gutters slds-wrap">
+                                            <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-2 slds-p-left_medium slds-p-around_medium">
+                                                <p class="slds-form-element__label slds-p-left_medium">Registrant: {contact.contactnamecg}</p><br/>
+                                                <p class="slds-form-element__label slds-p-left_medium">Registration Status: {contact.contactStatus}</p>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div></br>
+                </div>
+            </template>
+        </template>
+        
+            <div class="slds-media__body slds-align_absolute-center">
+                <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;--sds-c-button-brand-color-background: #00BFFF;--sds-c-button-brand-text-color: #000000;" variant="brand" label="Finish" onclick={handleFinishButton}></lightning-button><br /> <br />
+            </div>
+        
+    </div>
+    
+</template>
+<!--<template if:true={isModalOpen}>
+   
+    <div style="background-color:white; height:100%;">
+        <div class="slds-grid slds-gutters slds-wrap slds-p-top_xx-large slds-p-left_xx-large">
+            <div class="slds-media__body   slds-p-around_small" style="padding-top:10px; color:black;font-family:Arial;font-size: 27px;font-weight: 600;line-height: 29px;">
+                <p> Hi, {currentUserName} </p>
+            </div>
+        </div>
+        <template if:true={PageDashboard}>
+            <div class="slds-text-align_center slds-p-around_small" style="padding-top:10px;">
+                <p style="padding-top:10px;">View your list of events below: </p></br>
+                <div style="display: flex; justify-content: center; gap: 10px; flex-wrap: wrap;">
+                    <button class={button1Class} data-id="button1" style=" border: none;font-size:small; border-radius:15px; width:25%; height:40px;" data-name="group" onclick={handleUpcommingSessions} data-lang="Upcoming Sessions">Upcoming Sessions</button>
+                    <button class={button2Class} data-id="button2" style=" border: none;font-size:small; border-radius:15px; width:25%; height:40px;" data-name="group" onclick={handlePastSessions} data-lang="Past Sessions">Past Sessions</button>
+                </div>
+            </div>
+            <div class="slds-p-horizontal_large">
+                </br> 
+                    <template if:true={summaTion}>
+                    <template for:each={groupEvent} for:item="main" for:index="index"></br></br>  <div key={main.groupName} style="width:100%;height:100%;background-color:#E0FFFF;border-radius: 10px;margin-top:15px;">
+                        <div key={main.groupName} style="margin-top: 5px;">
+                            <div key={main.groupName}>
+                                <div class="slds-grid slds-gutters slds-wrap "  >
+                                    <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium"> <span key={main.typeOfProg} style="display: block; width: 100% !important;  padding: 10px;font-weight:bold;margin-left:15px;"></span></div>
+                                    <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium"><span key={main.groupName} style="display: block; width: 100% !important; padding: 10px;font-weight:bold;margin-left:25px; text-indent: -50px; padding-left: 50px;">Event: {main.groupName}</span></div>
+                                    <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium"> <span key={main.Eventstatee} style="display: block; width: 100% !important;  padding: 10px;font-weight:bold;margin-left:13px;">Event State: {main.Eventstatee}</span></div>
+                                
+                                </div>
+                            </div>
+                        </div>
+                        <template for:each={main.list} for:item="session" for:index="index">
+                            <div key={session.Id}>
+                                <div class="slds-grid slds-gutters slds-wrap">
+                                    <div class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  ">
+                                        <ol class="slds-list_dotted">
+                                            <template if:true={session.contentVersionUrls}>
+                                                <div>
+                                                    <iframe style="border-radius: 25px; width: 70%; height: 180px;pointer-events: none;" src={session.contentVersionUrls}  class="slds-m-around_medium"></iframe>
+                                                </div>
+                                            </template>
+                                            <template if:false={session.contentVersionUrls}>
+                                                <div>
+                                                    <img style="border-radius: 25px; width: 70%; height: 100px;pointer-events: none;" src={imageUrl} class="slds-m-around_medium"></img>
+                                                </div>
+                                            </template>
+                                        </ol>
+                                    </div>
+                                    <div style="font-weight:normal;" class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium">
+                                        <ol class="slds-list_dotted">
+                                            <li class="slds-form-element__label" style=" text-indent: -49px; padding-left: 49px;">Topic: {session.sessionName}</li> <br />
+                                            <li class="slds-form-element__label">Language: {session.eventLanguage}</li> <br />
+                                            <li class="slds-form-element__label" style=" text-indent: -56px; padding-left: 56px;">Venue: {session.venue}</li> <br/>
+                                            <li class="slds-form-element__label" style=" text-indent: -65px; padding-left: 65px;">Remark: {session.remarks}</li>
+                                        </ol>
+                                    </div>
+                                    <div style="font-weight:normal;" class="slds-size_1-of-1 slds-medium-size--1-of-2 slds-large-size--1-of-3  slds-p-around_medium">
+                                        <ol class="slds-list_dotted">
+                                            <li class="slds-form-element__label">Date: {session.sessionDate}</li> <br />
+                                            <li class="slds-form-element__label">Start Time: {session.startTime}</li> </br>
+                                            <li class="slds-form-element__label">End Time: {session.endTime}</li> </br>
+                                        </ol>
+                                    </div>
+                                    
+                                </div> <div style="text-align: center;">
+                                    <hr style="width: 93%; margin: 0 auto;">
+                                </div>
+                            </div>
+                        </template> <template for:each={main.cntname} for:item="contact"> <br key={contact.conId}> <div class="slds-p-left_medium" key={contact.conId}>
+                            <li class="groupbox" key={contact.conId} >{contact.contactnav} - {contact.statussess} <template if:true={main.hideButton}><button class="slds-text-align_center hover-effect-button" data-contact-id={contact.conId} data-event-id={main.groupName} style="border: 2px solid rgb(219, 187, 214);font-size:small; border-radius:20px; width:85px; height:30px;" onclick={notiFireDashboard}>withdraw</button> </template></li></div>
+                        </template><br/> </div> 
+                    </template> 
+                </template><template if:false={summaTion}><p class="slds-text-align_center">{Notfound} </p></template>
+                
+            </div>
+        </template> <template if:false={PageDashboard}>
+            <p class="slds-text-align_center">You have no Upcoming Events or Sessions.</p>
+        </template></br>
+        <div class="slds-media__body slds-text-align_right slds-p-around_small">
+            <button class="slds-text-align_center slds-float_right hover-effect-button" style="border: 2px solid rgb(219, 187, 214);font-size:small; margin-right:10px; border-radius:20px; width:90px; height:35px; padding-right:10px;Background:#00BFFF;" onclick={handleOkButton}>Back</button>
+        </div>
+    </div>
+    
+</template>-->
+<template if:true={finishButtonModalPopup}>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open">
+        <div class="slds-modal__container">
+            <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                </svg><span class="slds-assistive-text">Cancel and close</span></button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate" tabindex="-1">Notification</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <p>Thank you for registering.</p>
+            </div>
+            <div class="slds-modal__footer">
+                <!--<button class="slds-button slds-button_brand" onclick={handleDashboardOkButton}>Ok</button>-->
+                <lightning-button class="button" style="font-size: 18px; --slds-c-button-radius-border:15px;--sds-c-button-brand-color-background: #00BFFF;--sds-c-button-brand-text-color: #000000;" variant="brand" label="Ok" onclick={handleDashboardOkButton}></lightning-button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>
+
+</template>

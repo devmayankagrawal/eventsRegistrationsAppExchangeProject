@@ -1,0 +1,76 @@
+.dummy{
+	color : black;
+}
+.rectangle{
+	padding-top:10px;
+    width:100%;
+    height: 112%;
+    background:white;
+	border:2px solid #00BFFF;
+	border-radius: 15px ;	
+}
+
+.hover-effect-button {
+    border: 2px solid rgb(219, 187, 214);
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effect */
+}
+
+.hover-effect-button:hover {
+    background-color: rgb(105, 49, 97); /* Change background color on hover */
+    color: #000000; /* Change text color on hover */
+}
+
+
+.my-brand {
+    --slds-c-button-color-border: rgb(246, 246, 246);
+}
+
+.active {
+    background-color: #00BFFF;
+    color: #E0FFFF ;
+  }
+
+  .red-non-utility-icon{
+    --sds-c-icon-color-foreground: #070001;
+  }
+
+  .danger {
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
+    
+  }
+
+  .groupbox{
+	padding-left: 20px;
+
+}
+  .custom-list li {
+    list-style-type: disc !important;
+    margin-left: 30px !important; 
+    font-family: Arial !important;
+    font-size: 17px !important;
+    line-height: 1.5em !important; 
+    letter-spacing: 0em !important;
+    text-align: left !important;
+   }
+
+   .email-container {
+    display: flex;
+    align-items: center;
+  }
+  .email-container p {
+    margin-left: 0.5rem;
+    margin-bottom: 0; /* Ensure no extra margin on mobile */
+  }
+  
+  /*.custom-add-new-button .slds-button .slds-button_neutral {
+    padding-right: 10px !important;
+}*/
+
+/*.custom-delete-button {
+  border: 2px solid red !important;
+  
+}*/

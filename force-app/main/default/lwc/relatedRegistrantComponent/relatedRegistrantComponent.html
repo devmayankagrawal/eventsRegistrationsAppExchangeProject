@@ -1,0 +1,25 @@
+<template>
+    <lightning-card height="100px;" >
+        <div >
+    
+            <div class="slds-grid slds-grid_align-spread slds-m-around_medium">
+                <div class="slds-col">
+                    <h1 style="font-size:larger;font-weight:bold;">Registrant&nbsp;({recordCount}) </h1>
+                </div>
+              <!--  <div class="slds-col slds-shrink-none">
+                    <lightning-button label="New" onclick={handleNewRecordClick}></lightning-button>
+                </div> -->
+            </div>
+           
+            <lightning-datatable
+                    key-field="id"
+                    data={data}
+                    sorted-by={sortBy}
+                    sorted-direction={sortDirection}
+                    onsort={doSorting}
+                    columns={columns}>
+            </lightning-datatable>
+        </div>
+    
+    </lightning-card>
+</template>
